@@ -104,7 +104,7 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
-            <version>5.1.6</version>
+            <version>5.1.8</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.generator</groupId>
