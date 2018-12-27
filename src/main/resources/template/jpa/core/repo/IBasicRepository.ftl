@@ -10,8 +10,7 @@ import java.io.Serializable;
 import java.util.*;
 
 @NoRepositoryBean
-public interface IBasicRepository<T, ID extends Serializable>
-        extends JpaRepository<T, ID>, JpaSpecificationExecutor<T>, QuerydslPredicateExecutor<T> {
+public interface IBasicRepository<T, ID extends Serializable> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
 
     void delete(Collection<ID> ids);
 
@@ -42,11 +41,11 @@ public interface IBasicRepository<T, ID extends Serializable>
 
     T findUniqueByProperty(String propertyName, Object value);
 
-    List<Map<String, Object>> dosql(String sql, Object... value);
+    List<Map<String, Object>> findAllBySql(String sql, Object... value);
 
-    Map<String, Object> execsql(String sql, Object... value);
+    Map<String, Object> findOneBySql(String sql, Object... value);
 
-    int ddl(String sql, Object... value);
+    int execute(String sql, Object... value);
 
     T findOne(HashMap<String, Object> queryParams);
 

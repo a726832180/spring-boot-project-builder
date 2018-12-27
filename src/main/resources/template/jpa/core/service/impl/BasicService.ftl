@@ -1,6 +1,5 @@
 package ${corepackage}.service.impl;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import ${corepackage}.common.exception.DataNotFoundException;
 import ${corepackage}.page.SimplePage;
 import ${corepackage}.repo.IBasicRepository;
@@ -14,11 +13,8 @@ import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
 
 @Transactional
 public abstract class BasicService<V extends Serializable, E extends Serializable, ID extends Serializable> implements IBasicService<V, E, ID> {
@@ -28,20 +24,6 @@ public abstract class BasicService<V extends Serializable, E extends Serializabl
     private Class<V> voClass;
 
     private Class<ID> idClass;
-
-    @Autowired
-    private EntityManager entityManager;
-    
-    private JPAQueryFactory queryFactory;
-
-    @PostConstruct
-    public void initFactory() {
-        queryFactory = new JPAQueryFactory(entityManager);
-    }
-
-    protected JPAQueryFactory queryFactory(){
-    	return queryFactory;
-    }
 
     public BasicService() {
         Type genType = getClass().getGenericSuperclass();

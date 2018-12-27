@@ -11,7 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.provider.PersistenceProvider;
 import org.springframework.data.jpa.repository.support.CrudMethodMetadata;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
-import org.springframework.data.jpa.repository.support.QuerydslJpaRepository;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -24,7 +24,7 @@ import java.util.*;
 
 import static org.springframework.beans.BeanUtils.getPropertyDescriptor;
 
-public class BasicRepository<T, ID extends Serializable> extends QuerydslJpaRepository<T, ID>
+public class BasicRepository<T, ID extends Serializable> extends SimpleJpaRepository<T, ID>
         implements IBasicRepository<T, ID> {
 
     private final static String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -499,7 +499,7 @@ public class BasicRepository<T, ID extends Serializable> extends QuerydslJpaRepo
 
     @SuppressWarnings({"unchecked"})
     @Override
-    public List<Map<String, Object>> dosql(String sql, Object... value) {
+    public List<Map<String, Object>> findAllBySql(String sql, Object... value) {
         Query query = this.em.createNativeQuery(sql);
 
         int i = 1;
@@ -517,7 +517,7 @@ public class BasicRepository<T, ID extends Serializable> extends QuerydslJpaRepo
 
     @SuppressWarnings({"unchecked"})
     @Override
-    public Map<String, Object> execsql(String sql, Object... value) {
+    public Map<String, Object> findOneBySql(String sql, Object... value) {
         Query query = this.em.createNativeQuery(sql);
 
         int i = 1;
@@ -535,7 +535,7 @@ public class BasicRepository<T, ID extends Serializable> extends QuerydslJpaRepo
     }
 
     @Override
-    public int ddl(String sql, Object... value) {
+    public int execute(String sql, Object... value) {
         Query query = this.em.createNativeQuery(sql);
         int i = 1;
 

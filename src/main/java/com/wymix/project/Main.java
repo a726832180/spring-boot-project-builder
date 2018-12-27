@@ -29,10 +29,10 @@ public class Main {
 
 
     private static void buildProject() {
-        ProjectConfig projectConfig = ProjectConfig.project("docker.test")
+        ProjectConfig projectConfig = ProjectConfig.project("testa")
                 .company("wymix")
                 .enableSwagger()
-                .setDataBaseType(DataBaseType.NONE)
+                .setDataBaseType(DataBaseType.MYSQL)
                 .JDBCconfigure("jdbc:mysql://10.30.0.11:3306/testf", "root", "ori18502800930")
                 .setOrmType(OrmType.JPA)
                 .setDataBaseConnectPool(DataBaseConnectPool.HIKARICP).enableDocker();
