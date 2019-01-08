@@ -5,6 +5,8 @@ server:
   allowed-cross-domain: true
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: ${artifactId}
   jackson:
@@ -21,7 +23,7 @@ spring:
   datasource:
     <#switch databaseType>
         <#case "MYSQL">
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
         <#break>
         <#case "SQLSERVER">
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
